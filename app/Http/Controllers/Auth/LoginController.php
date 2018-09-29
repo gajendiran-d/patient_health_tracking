@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\User;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -35,5 +37,18 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $user
+     * @return \App\User
+     */
+    protected function authenticated($user)
+    {       
+        session(['name' => Auth::user()->name]);
+        session(['email' => Auth::user()->email]);
+        session(['id' => Auth::user()->id]);
+        session(['type' => Auth::user()->type]);
     }
 }

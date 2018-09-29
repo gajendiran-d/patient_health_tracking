@@ -12,6 +12,22 @@
                         @csrf
 
                         <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label">{{ __('I am') }}</label>
+
+                            <div class="col-md-8">
+                                <select name="type" id="type" class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" required autofocus>
+                                    <option value="P">Patient</option>
+                                    <option value="D">Doctor</option>
+                                </select>
+                                @if ($errors->has('type'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('type') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label">{{ __('Name') }}</label>
 
                             <div class="col-md-8">

@@ -11,13 +11,16 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}" defer></script>
+    <script src="{{ asset('js/moment.min.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('fontawesome/css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/customize.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -55,6 +58,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('users/') }}/{{ Auth::user()->id }}">  {{ __('My Profile') }}</a>
+                                    <a class="dropdown-item" href="{{ url('changePassword') }}">  {{ __('Change Password') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
