@@ -70,6 +70,10 @@ class RegisterController extends Controller
         $register->email=$data['email'];
         $register->password=Hash::make($data['password']);
         $register->save();
+        
+        session(['name' => $data['name']]);
+        session(['email' => $data['email']]);
+        session(['type' => $data['type']]);
         return $register;
         // return User::create([
         //     'type' => $data['type'],

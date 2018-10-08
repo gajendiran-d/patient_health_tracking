@@ -45,7 +45,7 @@ class LoginController extends Controller
      * @return \App\User
      */
     protected function authenticated($user)
-    {       
+    {
         session(['name' => Auth::user()->name]);
         session(['email' => Auth::user()->email]);
         session(['id' => Auth::user()->id]);

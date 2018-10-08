@@ -58,7 +58,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('users/') }}/{{ Auth::user()->id }}">  {{ __('My Profile') }}</a>
+                                    <a class="dropdown-item" href="{{ url('myProfile') }}">  {{ __('My Profile') }}</a>
                                     <a class="dropdown-item" href="{{ url('changePassword') }}">  {{ __('Change Password') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
