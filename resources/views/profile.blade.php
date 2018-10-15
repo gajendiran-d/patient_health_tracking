@@ -18,6 +18,9 @@
       <div class="card-body">
         <form class="form-horizontal" method="POST" action="{{url('myProfile')}}">
         @csrf 
+        @php
+        $type=Session::get('type');
+        @endphp
         <div class="form-group row">
           <label for="name" class="col-md-4 control-label">Name</label>
           <div class="col-md-8"><input name="name" id="name" type="text" maxlength="30" class="form-control" value="{{$indexProfiles[0]->name}}" required></div>
@@ -44,6 +47,7 @@
           <label for="address" class="col-md-4 control-label">Address</label>
           <div class="col-md-8"><textarea name="address" id="address" maxlength="500" class="form-control" required>{{$indexProfiles[0]->address}}</textarea></div>
         </div>
+        @if($type=='P')
         <div class="form-group row">
           <label for="height" class="col-md-4 control-label">Height</label>
           <div class="col-md-8"><input name="height" id="height" type="text" maxlength="5" class="form-control" value="{{$indexProfiles[0]->height}}" ></div>
@@ -54,8 +58,22 @@
         </div>
         <div class="form-group row">
           <label for="weight" class="col-md-4 control-label">Blood Group</label>
-          <div class="col-md-8"><input name="blood_group" id="blood_group" type="text" class="form-control" value="{{$indexProfiles[0]->blood_group}}" ></div>
+          <div class="col-md-8">
+          <select name="blood_group" id="blood_group" class="form-control">
+            <option value=''>Select</option>
+            <option value='A+' {{$indexProfiles[0]->blood_group == 'A+' ? 'selected' : '' }}>A +ve</option>
+            <option value='A-' {{$indexProfiles[0]->blood_group == 'A-' ? 'selected' : '' }}>A -ve</option>
+            <option value='B+' {{$indexProfiles[0]->blood_group == 'B+' ? 'selected' : '' }}>B +ve</option>
+            <option value='B-' {{$indexProfiles[0]->blood_group == 'B-' ? 'selected' : '' }}>B -ve</option>
+            <option value='O+' {{$indexProfiles[0]->blood_group == 'O+' ? 'selected' : '' }}>O +ve</option>
+            <option value='O-' {{$indexProfiles[0]->blood_group == 'O-' ? 'selected' : '' }}>O -ve</option>
+            <option value='AB+' {{$indexProfiles[0]->blood_group == 'AB+' ? 'selected' : '' }}>AB +ve</option>
+            <option value='AB-' {{$indexProfiles[0]->blood_group == 'AB-' ? 'selected' : '' }}>AB -ve</option>
+          </select>
+          </div>
         </div>
+        @endif
+        @if($type=='D')
         <div class="form-group row">
           <label for="hospital_name" class="col-md-4 control-label">Hospital Name</label>
           <div class="col-md-8"><input name="hospital_name" id="hospital_name" type="text" class="form-control" maxlength="50" value="{{$indexProfiles[0]->hospital_name}}" required></div>
@@ -80,6 +98,7 @@
           <label for="license_expire" class="col-md-4 control-label">License Expire</label>
           <div class="col-md-8"><input name="license_expire" id="license_expire" type="date" class="form-control" maxlength="10" value="{{$indexProfiles[0]->license_expire}}" required></div>
         </div>
+        @endif
         <div class="form-group row mb-0">
           <div class="col-md-12 text-md-right"><button type="submit" class="btn btn-success" >Submit</button></div>
         </div>

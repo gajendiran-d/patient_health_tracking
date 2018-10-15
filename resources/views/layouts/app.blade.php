@@ -52,11 +52,24 @@
                                 @endif
                             </li>
                         @else
+                        @php 
+                        $type=Session::get('type');
+                        @endphp
+                        @if($type=='D')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('searchPatient') }}">{{ __('Patients Profile') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('searchMedication') }}">{{ __('Medication History') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('newVisit') }}">{{ __('New Visit') }}</a>
+                            </li>
+                        @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
+                                </a>    
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('myProfile') }}">  {{ __('My Profile') }}</a>
                                     <a class="dropdown-item" href="{{ url('changePassword') }}">  {{ __('Change Password') }}</a>
@@ -65,7 +78,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

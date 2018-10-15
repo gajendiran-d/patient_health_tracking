@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 
-class ProfileController extends Controller
+class VisitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $email=Session::get('email');
-        $indexProfile = \App\User::where(['email' => $email,'active_status' => 1])->get();
-        return view('profile',['indexProfiles' =>$indexProfile]);
+        return view('new_visit');
     }
 
     /**
@@ -27,7 +25,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -38,29 +36,16 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        $email=Session::get('email');
-        $type=Session::get('type');
-        $storeProfile = \App\User::updateOrCreate(['email'=>$email]);
-        $storeProfile->name=$request->get('name');
-        $storeProfile->age=$request->get('age');
-        $storeProfile->gender=$request->get('gender');
-        $storeProfile->phone=$request->get('phone');
-        $storeProfile->address=$request->get('address');
-        if($type=='P') {
-            $storeProfile->height=$request->get('height');
-            $storeProfile->weight=$request->get('weight');
-            $storeProfile->blood_group=$request->get('blood_group');
-        }
-        if($type=='D') {
-            $storeProfile->hospital_name=$request->get('hospital_name');
-            $storeProfile->specialist=$request->get('specialist');
-            $storeProfile->degree=$request->get('degree');
-            $storeProfile->experience=$request->get('experience');
-            $storeProfile->license_number=$request->get('license_number');
-            $storeProfile->license_expire=$request->get('license_expire');
-        }
-        $storeProfile->save();
-        return redirect('myProfile')->with('success', 'Profile updated successfully.');
+        $doctor_email=Session::get('email');
+        $storeVisit = new \App\Visit;
+        $storeVisit->patient_email=$request->get('email');
+        $storeVisit->doctor_email=$doctor_email;
+        $storeVisit->reason=$request->get('reason');
+        $storeVisit->problem=$request->get('problem');
+        $storeVisit->prescribe=$request->get('prescribe');
+        $storeVisit->visit=$request->get('visit');
+        $storeVisit->save();
+        return redirect('newVisit')->with('success', 'Visit details saved successfully.');
     }
 
     /**
@@ -110,12 +95,12 @@ class ProfileController extends Controller
 
     public function search()
     {
-        return view('search_patient');
+        return view('search_medication');
     }
 
-    public function view(Request $request)
+    public function history(Request $request)
     {
-        $viewPatient = \App\User::where(['email' => $request->get('email'),'type' => 'P','active_status' => 1])->get();
+        $viewPatient = \App\Visit::where(['patient_email' => $request->get('email'),'active_status' => 1])->get();
         $viewPatientCount=count($viewPatient);
         return view('patient_details',['viewPatientCounts' => $viewPatientCount,'viewPatients' => $viewPatient]);
     }
