@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
+use App\User;
+use Illuminate\Support\Facades\Route;
 
 class VisitController extends Controller
 {
@@ -100,8 +102,44 @@ class VisitController extends Controller
 
     public function history(Request $request)
     {
-        $viewPatient = \App\Visit::where(['patient_email' => $request->get('email'),'active_status' => 1])->get();
-        $viewPatientCount=count($viewPatient);
-        return view('patient_details',['viewPatientCounts' => $viewPatientCount,'viewPatients' => $viewPatient]);
+        $fromDate=$request->get('from');
+        $toDate=$request->get('to');
+        $medicationHistory = new \App\Visit;
+        $medicationHistory = $medicationHistory->select("visits.id","visits.patient_email","visits.updated_at","visits.doctor_email","users.name","visits.visit");
+        $medicationHistory = $medicationHistory->leftjoin('users',function($join) {
+            $join->on('users.email', '=', 'visits.patient_email');
+        });
+        $medicationHistory = $medicationHistory->where('visits.patient_email', '=', $request->get('email'));
+        $medicationHistory = $medicationHistory->whereBetween('visits.updated_at', [$fromDate, $toDate]);
+        $medicationHistory = $medicationHistory->orderBy('visits.visit', 'desc');
+        $medicationHistory = $medicationHistory->get();
+        $medicationHistoryCount=count($medicationHistory);
+        return view('medication_history',['viewMedicationCounts' => $medicationHistoryCount,'viewMedications' => $medicationHistory]);
+    }
+    public function view(Request $request)
+    {
+        $id=Route::input('id');
+        $viewMedication = new \App\Visit;
+        $viewMedication = $viewMedication->select("users.name","visits.doctor_email","users.phone","users.hospital_name","users.specialist","visits.reason","visits.problem","visits.prescribe");
+        $viewMedication = $viewMedication->leftjoin('users',function($join) {
+            $join->on('users.email', '=', 'visits.doctor_email');
+        });
+        $viewMedication = $viewMedication->where('visits.id', '=', $id);
+        $viewMedication = $viewMedication->get();
+        return view('medication_details',['viewMedications' => $viewMedication]);
+    }
+    public function patientHistory()
+    {
+        $email=Session::get('email');
+        $medicationHistory = new \App\Visit;
+        $medicationHistory = $medicationHistory->select("visits.id","visits.patient_email","visits.updated_at","visits.doctor_email","users.name","visits.visit");
+        $medicationHistory = $medicationHistory->leftjoin('users',function($join) {
+            $join->on('users.email', '=', 'visits.doctor_email');
+        });
+        $medicationHistory = $medicationHistory->where('visits.patient_email', '=', $email);
+        $medicationHistory = $medicationHistory->orderBy('visits.visit', 'desc');
+        $medicationHistory = $medicationHistory->get();
+        $medicationHistoryCount=count($medicationHistory);
+        return view('patient_medication_history',['viewMedicationCounts' => $medicationHistoryCount,'viewMedications' => $medicationHistory]);
     }
 }

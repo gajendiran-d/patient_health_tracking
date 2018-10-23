@@ -14,63 +14,46 @@
     </div>
     @endif
     <div class="card">
-      <div class="card-header text-center">{{ __('Patient Details') }}</div>
+      <div class="card-header text-center">{{ __('Medication Details') }}</div>
       <div class="card-body">
-        @if($viewPatientCounts==0)
         <div class="form-group row">
-          <div class="col-md-12 text-center text-danger">{{ __('Sorry, No record match your search criteria.') }}</div>
-        </div>
-        @endif
-        @if($viewPatientCounts!=0)
-        <div class="form-group row">
-          <label for="name" class="col-md-4 control-label"><b>Name</b></label>
-          <div class="col-md-8">{{$viewPatients[0]->name}}</div>
+          <label for="name" class="col-md-4 control-label"><b>Doctor Name</b></label>
+          <div class="col-md-8">{{$viewMedications[0]->name}}</div>
         </div>
         <div class="form-group row">
-          <label for="gender" class="col-md-4 control-label"><b>Gender</b></label>
+          <label for="email" class="col-md-4 control-label"><b>Doctor Email</b></label>
+          <div class="col-md-8">{{$viewMedications[0]->doctor_email}}</div>
+        </div>
+        <div class="form-group row">
+          <label for="phone" class="col-md-4 control-label"><b>Doctor Phone</b></label>
           <div class="col-md-8">
-          @if($viewPatients[0]->gender=='M') {{ __('Male') }} @endif
-          @if($viewPatients[0]->gender=='F') {{ __('Female') }} @endif
-          @if($viewPatients[0]->gender=='T') {{ __('Transgender') }} @endif
+          @if($viewMedications[0]->phone!='') {{$viewMedications[0]->phone}} @else {{ __('NA') }} @endif
           </div>
         </div>
         <div class="form-group row">
-          <label for="age" class="col-md-4 control-label"><b>Age</b></label>
+          <label for="hospital" class="col-md-4 control-label"><b>Hospital Name</b></label>
           <div class="col-md-8">
-          @if($viewPatients[0]->age!='') {{$viewPatients[0]->age}} @else {{ __('NA') }} @endif
+          @if($viewMedications[0]->hospital_name!='') {{$viewMedications[0]->hospital_name}} @else {{ __('NA') }} @endif
           </div>
         </div>
         <div class="form-group row">
-          <label for="phone" class="col-md-4 control-label"><b>Phone</b></label>
+          <label for="specialist" class="col-md-4 control-label"><b>Specialist</b></label>
           <div class="col-md-8">
-          @if($viewPatients[0]->phone!='') {{$viewPatients[0]->phone}} @else {{ __('NA') }} @endif
+          @if($viewMedications[0]->specialist!='') {{$viewMedications[0]->specialist}} @else {{ __('NA') }} @endif
           </div>
         </div>
         <div class="form-group row">
-          <label for="blood_group" class="col-md-4 control-label"><b>Blood Group</b></label>
-          <div class="col-md-8">
-          @if($viewPatients[0]->blood_group!='') {{$viewPatients[0]->blood_group}} @else {{ __('NA') }} @endif
-          </div>
+          <label for="reason" class="col-md-4 control-label"><b>Reason To Visit</b></label>
+          <div class="col-md-8">{{$viewMedications[0]->reason}}</div>
         </div>
         <div class="form-group row">
-          <label for="height" class="col-md-4 control-label"><b>Height</b></label>
-          <div class="col-md-8">
-          @if($viewPatients[0]->height!='') {{$viewPatients[0]->height}} @else {{ __('NA') }} @endif
-          </div>
+          <label for="problem" class="col-md-4 control-label"><b>Problem Diagnosied</b></label>
+          <div class="col-md-8">{{$viewMedications[0]->problem}}</div>
         </div>
         <div class="form-group row">
-          <label for="weight" class="col-md-4 control-label"><b>Weight</b></label>
-          <div class="col-md-8">
-          @if($viewPatients[0]->weight!='') {{$viewPatients[0]->weight}} @else {{ __('NA') }} @endif
-          </div>
+          <label for="prescribe" class="col-md-4 control-label"><b>Medication Prescribed</b></label>
+          <div class="col-md-8">{{$viewMedications[0]->prescribe}}</div>
         </div>
-        <div class="form-group row">
-          <label for="address" class="col-md-4 control-label"><b>Address</b></label>
-          <div class="col-md-8">
-          @if($viewPatients[0]->address!='') {{$viewPatients[0]->address}} @else {{ __('NA') }} @endif
-          </div>
-        </div>
-        @endif
       </div>
     </div>
   </div>

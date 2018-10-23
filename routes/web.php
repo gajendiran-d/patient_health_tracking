@@ -26,4 +26,5 @@ Route::post('/patientDetails','ProfileController@view');
 Route::resource('/newVisit','VisitController');
 Route::get('/searchMedication','VisitController@search');
 Route::post('/medicationHistory','VisitController@history');
-Route::get('/medicationDetails','VisitController@view');
+Route::get('medicationDetails/{id}','VisitController@view');
+Route::get('/patientMedicationHistory','VisitController@patientHistory');
