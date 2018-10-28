@@ -46,6 +46,13 @@ class VisitController extends Controller
         $storeVisit->problem=$request->get('problem');
         $storeVisit->prescribe=$request->get('prescribe');
         $storeVisit->visit=$request->get('visit');
+        if($request->file('report')!='') {
+            $image = $request->file('report');
+            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/scan');
+            $image->move($destinationPath, $input['imagename']);
+            $storeVisit->report=$input['imagename'];
+        }
         $storeVisit->save();
         return redirect('newVisit')->with('success', 'Visit details saved successfully.');
     }
@@ -105,7 +112,7 @@ class VisitController extends Controller
         $fromDate=$request->get('from');
         $toDate=$request->get('to');
         $medicationHistory = new \App\Visit;
-        $medicationHistory = $medicationHistory->select("visits.id","visits.patient_email","visits.updated_at","visits.doctor_email","users.name","visits.visit");
+        $medicationHistory = $medicationHistory->select("visits.id","visits.patient_email","visits.updated_at","visits.doctor_email","users.name","visits.visit","visits.report");
         $medicationHistory = $medicationHistory->leftjoin('users',function($join) {
             $join->on('users.email', '=', 'visits.patient_email');
         });
@@ -120,7 +127,7 @@ class VisitController extends Controller
     {
         $id=Route::input('id');
         $viewMedication = new \App\Visit;
-        $viewMedication = $viewMedication->select("users.name","visits.doctor_email","users.phone","users.hospital_name","users.specialist","visits.reason","visits.problem","visits.prescribe");
+        $viewMedication = $viewMedication->select("users.name","visits.doctor_email","users.phone","users.hospital_name","users.specialist","visits.reason","visits.problem","visits.prescribe","visits.report");
         $viewMedication = $viewMedication->leftjoin('users',function($join) {
             $join->on('users.email', '=', 'visits.doctor_email');
         });
@@ -132,7 +139,7 @@ class VisitController extends Controller
     {
         $email=Session::get('email');
         $medicationHistory = new \App\Visit;
-        $medicationHistory = $medicationHistory->select("visits.id","visits.patient_email","visits.updated_at","visits.doctor_email","users.name","visits.visit");
+        $medicationHistory = $medicationHistory->select("visits.id","visits.patient_email","visits.updated_at","visits.doctor_email","users.name","visits.visit","visits.report");
         $medicationHistory = $medicationHistory->leftjoin('users',function($join) {
             $join->on('users.email', '=', 'visits.doctor_email');
         });

@@ -40,7 +40,7 @@
             <td>{{$viewMedication->patient_email}}</td>
             <td>{{$viewMedication->updated_at}}</td>
             <td>{{$viewMedication->visit}}</td>
-            <td><a href="{{url('medicationDetails/'.$viewMedication->id.'/')}}"><i class="far fa-file-alt"></i></td>
+            <td><a target="_blank" href="{{url('medicationDetails/'.$viewMedication->id.'/')}}"><i class="far fa-file-alt"></i></td>
             </tr>
             @endforeach
             </tbody>

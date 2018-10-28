@@ -16,7 +16,7 @@
     <div class="card">
       <div class="card-header text-center">{{ __('New Visit') }}</div>
       <div class="card-body">
-        <form class="form-horizontal" method="POST" action="{{url('newVisit')}}">
+        <form class="form-horizontal" method="POST" action="{{url('newVisit')}}" enctype="multipart/form-data">
         @csrf 
         <div class="form-group row">
           <label for="email" class="col-md-4 control-label">Patient Email</label>
@@ -33,6 +33,10 @@
         <div class="form-group row">
           <label for="prescribe" class="col-md-4 control-label">Medication Prescribed (with dosage and time limit)</label>
           <div class="col-md-8"><textarea name="prescribe" id="prescribe" maxlength="500" class="form-control" required></textarea></div>
+        </div>
+        <div class="form-group row">
+          <label for="scan" class="col-md-4 control-label">Scan Report</label>
+          <div class="col-md-8"><input type="file" name="report" id="report" class="form-control" value=""/></div>
         </div>
         <div class="form-group row">
           <label for="visit" class="col-md-4 control-label">Number Of Visit</label>

@@ -54,6 +54,16 @@
           <label for="prescribe" class="col-md-4 control-label"><b>Medication Prescribed</b></label>
           <div class="col-md-8">{{$viewMedications[0]->prescribe}}</div>
         </div>
+        <div class="form-group row">
+          <label for="prescribe" class="col-md-4 control-label"><b>Scan Report</b></label>
+          <div class="col-md-8">
+          @if($viewMedications[0]->report!='') 
+            <a target="_blank" href="{{URL::to('/')}}/scan/{{$viewMedications[0]->report}}"><i class="far fa-file-pdf"></i></a>
+          @else 
+            {{ __('NA') }} 
+          @endif
+          </div>
+        </div>
       </div>
     </div>
   </div>
