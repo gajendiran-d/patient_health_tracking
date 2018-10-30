@@ -50,6 +50,7 @@ class ProfileController extends Controller
             $storeProfile->height=$request->get('height');
             $storeProfile->weight=$request->get('weight');
             $storeProfile->blood_group=$request->get('blood_group');
+            $storeProfile->allergies=$request->get('allergies');
         }
         if($type=='D') {
             $storeProfile->hospital_name=$request->get('hospital_name');

@@ -55,6 +55,14 @@
           <div class="col-md-8">{{$viewMedications[0]->prescribe}}</div>
         </div>
         <div class="form-group row">
+          <label for="prescribe" class="col-md-4 control-label"><b>Period Of Medication (Days)</b></label>
+          <div class="col-md-8">{{$viewMedications[0]->period}}</div>
+        </div>
+        <div class="form-group row">
+          <label for="prescribe" class="col-md-4 control-label"><b>No of Visit</b></label>
+          <div class="col-md-8">{{$viewMedications[0]->visit}}</div>
+        </div>
+        <div class="form-group row">
           <label for="prescribe" class="col-md-4 control-label"><b>Scan Report</b></label>
           <div class="col-md-8">
           @if($viewMedications[0]->report!='') 

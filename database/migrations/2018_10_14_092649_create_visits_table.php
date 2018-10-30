@@ -20,6 +20,7 @@ class CreateVisitsTable extends Migration
             $table->string('reason', 750)->nullable();
             $table->string('problem', 750)->nullable();
             $table->string('prescribe', 750)->nullable();
+            $table->integer('period')->nullable();
             $table->string('report', 750)->nullable();
             $table->integer('visit')->nullable();
             $table->integer('active_status')->default(1);

@@ -35,6 +35,10 @@
           <div class="col-md-8"><textarea name="prescribe" id="prescribe" maxlength="500" class="form-control" required></textarea></div>
         </div>
         <div class="form-group row">
+          <label for="period" class="col-md-4 control-label">Period Of Medication (Days)</label>
+          <div class="col-md-8"><input name="period" id="period" type="number" class="form-control" value="" required></div>
+        </div>
+        <div class="form-group row">
           <label for="scan" class="col-md-4 control-label">Scan Report</label>
           <div class="col-md-8"><input type="file" name="report" id="report" class="form-control" value=""/></div>
         </div>

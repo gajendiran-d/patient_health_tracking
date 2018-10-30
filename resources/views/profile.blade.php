@@ -72,6 +72,10 @@
           </select>
           </div>
         </div>
+        <div class="form-group row">
+          <label for="allergies" class="col-md-4 control-label">Allergies</label>
+          <div class="col-md-8"><textarea name="allergies" id="address" maxlength="500" class="form-control" required>{{$indexProfiles[0]->allergies}}</textarea></div>
+        </div>
         @endif
         @if($type=='D')
         <div class="form-group row">
