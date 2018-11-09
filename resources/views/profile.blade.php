@@ -74,7 +74,11 @@
         </div>
         <div class="form-group row">
           <label for="allergies" class="col-md-4 control-label">Allergies</label>
-          <div class="col-md-8"><textarea name="allergies" id="address" maxlength="500" class="form-control" required>{{$indexProfiles[0]->allergies}}</textarea></div>
+          <div class="col-md-8"><textarea name="allergies" id="allergies" maxlength="500" class="form-control" required>{{$indexProfiles[0]->allergies}}</textarea></div>
+        </div>
+        <div class="form-group row">
+          <label for="regular_medicine" class="col-md-4 control-label">Regular Medicine Intake</label>
+          <div class="col-md-8"><textarea name="regular_medicine" id="regular_medicine" maxlength="500" class="form-control" required>{{$indexProfiles[0]->regular_medicine}}</textarea></div>
         </div>
         @endif
         @if($type=='D')

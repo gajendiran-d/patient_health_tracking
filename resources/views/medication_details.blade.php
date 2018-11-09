@@ -56,7 +56,9 @@
         </div>
         <div class="form-group row">
           <label for="prescribe" class="col-md-4 control-label"><b>Period Of Medication (Days)</b></label>
-          <div class="col-md-8">{{$viewMedications[0]->period}}</div>
+          <div class="col-md-8">
+            @if($viewMedications[0]->period!='') {{$viewMedications[0]->period}} @else {{ __('NA') }} @endif
+          </div>
         </div>
         <div class="form-group row">
           <label for="prescribe" class="col-md-4 control-label"><b>No of Visit</b></label>

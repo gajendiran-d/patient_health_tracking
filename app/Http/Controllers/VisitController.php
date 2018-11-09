@@ -119,7 +119,7 @@ class VisitController extends Controller
         });
         $medicationHistory = $medicationHistory->where('visits.patient_email', '=', $request->get('email'));
         $medicationHistory = $medicationHistory->whereBetween('visits.updated_at', [$fromDate, $toDate]);
-        $medicationHistory = $medicationHistory->orderBy('visits.visit', 'desc');
+        $medicationHistory = $medicationHistory->orderBy('visits.updated_at', 'desc');
         $medicationHistory = $medicationHistory->get();
         $medicationHistoryCount=count($medicationHistory);
         return view('medication_history',['viewMedicationCounts' => $medicationHistoryCount,'viewMedications' => $medicationHistory]);
@@ -145,7 +145,7 @@ class VisitController extends Controller
             $join->on('users.email', '=', 'visits.doctor_email');
         });
         $medicationHistory = $medicationHistory->where('visits.patient_email', '=', $email);
-        $medicationHistory = $medicationHistory->orderBy('visits.visit', 'desc');
+        $medicationHistory = $medicationHistory->orderBy('visits.updated_at', 'desc');
         $medicationHistory = $medicationHistory->get();
         $medicationHistoryCount=count($medicationHistory);
         return view('patient_medication_history',['viewMedicationCounts' => $medicationHistoryCount,'viewMedications' => $medicationHistory]);

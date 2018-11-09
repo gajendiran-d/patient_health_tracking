@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->string('license_expire', 15)->nullable();
             $table->string('assign_doctor', 15)->nullable();
             $table->string('allergies', 750)->nullable();
+            $table->string('regular_medicine', 750)->nullable();
             $table->integer('active_status')->default(1);
             $table->rememberToken();
             $table->timestamps();

@@ -71,6 +71,12 @@
           </div>
         </div>
         <div class="form-group row">
+          <label for="address" class="col-md-4 control-label"><b>Regular Medicine Intake</b></label>
+          <div class="col-md-8">
+          @if($viewPatients[0]->regular_medicine!='') {{$viewPatients[0]->regular_medicine}} @else {{ __('NA') }} @endif
+          </div>
+        </div>
+        <div class="form-group row">
           <label for="address" class="col-md-4 control-label"><b>Address</b></label>
           <div class="col-md-8">
           @if($viewPatients[0]->address!='') {{$viewPatients[0]->address}} @else {{ __('NA') }} @endif

@@ -29,6 +29,7 @@
             <td><b>Doctor Name</b></td>
             <td><b>Doctor Email</b></td>
             <td><b>Date</b></td> 
+            <td><b>Reason</b></td> 
             <td><b>Visit</b></td> 
             <td><b>Action</b></td>
             </tr>
@@ -39,6 +40,7 @@
             <td>@if($viewMedication->name!='') {{$viewMedication->name}} @else {{ __('NA') }} @endif</td>
             <td>{{$viewMedication->doctor_email}}</td>
             <td>{{$viewMedication->updated_at}}</td>
+            <td>{{$viewMedication->reason}}</td>
             <td>{{$viewMedication->visit}}</td>
             <td><a href="{{url('medicationDetails/'.$viewMedication->id.'/')}}"><i class="far fa-file-alt"></i></td>
             </tr>
