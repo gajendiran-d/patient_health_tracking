@@ -51,16 +51,6 @@
           <div class="col-md-8">{{$viewMedications[0]->problem}}</div>
         </div>
         <div class="form-group row">
-          <label for="prescribe" class="col-md-4 control-label"><b>Medication Prescribed</b></label>
-          <div class="col-md-8">{{$viewMedications[0]->prescribe}}</div>
-        </div>
-        <div class="form-group row">
-          <label for="prescribe" class="col-md-4 control-label"><b>Period Of Medication (Days)</b></label>
-          <div class="col-md-8">
-            @if($viewMedications[0]->period!='') {{$viewMedications[0]->period}} @else {{ __('NA') }} @endif
-          </div>
-        </div>
-        <div class="form-group row">
           <label for="prescribe" class="col-md-4 control-label"><b>No of Visit</b></label>
           <div class="col-md-8">{{$viewMedications[0]->visit}}</div>
         </div>
@@ -72,6 +62,38 @@
           @else 
             {{ __('NA') }} 
           @endif
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="prescribe" class="col-md-4 control-label"><b>Medication Prescribed</b></label>
+          <div class="col-md-8">
+          @php
+          $prescribe=explode("^^",$viewMedications[0]->prescribe);
+          $period=explode("^^",$viewMedications[0]->period);
+          $time=explode("^^",$viewMedications[0]->time);
+          for($i=0;$i<count($prescribe);$i++) {
+          @endphp
+          <table width="100%">
+              <tr valign="top">
+                <td width="45%">{{$prescribe[$i]}}</td>
+                <td width="3%"> - </td>
+                <td width="14%">{{$period[$i]}} days</td>
+                <td width="3%"> - </td>
+                <td width="35%">
+                @if($time[$i]=='M'){{ __('Morning') }}
+                @elseif($time[$i]=='A'){{ __('Afternoon') }}
+                @elseif($time[$i]=='N'){{ __('Night') }}
+                @elseif($time[$i]=='MA'){{ __('Morning,Afternoon') }}
+                @elseif($time[$i]=='AN'){{ __('Afternoon,Night') }}
+                @elseif($time[$i]=='MN'){{ __('Morning,Night') }}
+                @elseif($time[$i]=='MAN'){{ __('Morning,Afternoon,Night') }}
+                @endif
+                </td>
+              </tr>
+            </table>
+          @php
+          }
+          @endphp
           </div>
         </div>
       </div>

@@ -39,13 +39,17 @@ class VisitController extends Controller
     public function store(Request $request)
     {
         $doctor_email=Session::get('email');
+        $prescribe=\implode('^^',$request->get('prescribe'));
+        $period=\implode('^^',$request->get('period'));
+        $time=\implode('^^',$request->get('time'));
         $storeVisit = new \App\Visit;
         $storeVisit->patient_email=$request->get('email');
         $storeVisit->doctor_email=$doctor_email;
         $storeVisit->reason=$request->get('reason');
         $storeVisit->problem=$request->get('problem');
-        $storeVisit->prescribe=$request->get('prescribe');
-        $storeVisit->period=$request->get('period');
+        $storeVisit->prescribe=$prescribe;
+        $storeVisit->period=$period;
+        $storeVisit->time=$time;
         $storeVisit->visit=$request->get('visit');
         if($request->file('report')!='') {
             $image = $request->file('report');
@@ -128,7 +132,7 @@ class VisitController extends Controller
     {
         $id=Route::input('id');
         $viewMedication = new \App\Visit;
-        $viewMedication = $viewMedication->select("users.name","visits.doctor_email","users.phone","users.hospital_name","users.specialist","visits.reason","visits.problem","visits.prescribe","visits.period","visits.report","visits.visit");
+        $viewMedication = $viewMedication->select("users.name","visits.doctor_email","users.phone","users.hospital_name","users.specialist","visits.reason","visits.problem","visits.prescribe","visits.period","visits.time","visits.report","visits.visit");
         $viewMedication = $viewMedication->leftjoin('users',function($join) {
             $join->on('users.email', '=', 'visits.doctor_email');
         });
