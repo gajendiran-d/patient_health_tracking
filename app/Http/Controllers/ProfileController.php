@@ -121,4 +121,16 @@ class ProfileController extends Controller
         $viewPatientCount=count($viewPatient);
         return view('patient_details',['viewPatientCounts' => $viewPatientCount,'viewPatients' => $viewPatient]);
     }
+
+    public function apiProfile()
+    {
+        $email=Session::get('email');
+        $indexProfile = \App\User::where(['email' => $email,'active_status' => 1])->get();
+        $response = [
+            'success' => true,
+            'data'    => $indexProfile,
+            'message' => "Profile retrived successfully.",
+        ];
+        return response()->json($response, 200);
+    }
 }

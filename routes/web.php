@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/changePassword','HomeController@showChangePasswordForm');
 Route::post('/changePassword','HomeController@changePassword')->name('changePassword');
 Route::resource('/myProfile','ProfileController');
+Route::get('/apiMyProfile','ProfileController@apiProfile');
 Route::get('/searchPatient','ProfileController@search');
 Route::post('/patientDetails','ProfileController@view');
 Route::resource('/newVisit','VisitController');
