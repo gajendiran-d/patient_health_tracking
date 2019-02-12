@@ -29,3 +29,5 @@ Route::get('/searchMedication','VisitController@search');
 Route::post('/medicationHistory','VisitController@history');
 Route::get('medicationDetails/{id}','VisitController@view');
 Route::get('/patientMedicationHistory','VisitController@patientHistory');
+Route::get('/bmiCalculator','ProfileController@bmiCalculator');
+Route::get('/visitChart','VisitController@visitChart');

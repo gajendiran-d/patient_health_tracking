@@ -55,6 +55,9 @@
                         @php 
                         $type=Session::get('type');
                         @endphp
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('bmiCalculator') }}">{{ __('BMI Calculator') }}</a>
+                        </li>
                         @if($type=='D')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('searchPatient') }}">{{ __('Patients Profile') }}</a>

@@ -154,4 +154,8 @@ class VisitController extends Controller
         $medicationHistoryCount=count($medicationHistory);
         return view('patient_medication_history',['viewMedicationCounts' => $medicationHistoryCount,'viewMedications' => $medicationHistory]);
     }
+    public function visitChart()
+    {
+        return view('visit_chart');
+    }
 }
