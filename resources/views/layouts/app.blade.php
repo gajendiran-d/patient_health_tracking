@@ -13,18 +13,18 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/customize.css') }}" rel="stylesheet">
-        
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    
+
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark navbar-laravel bg-success">
+        <nav class="navbar navbar-expand-md navbar-dark navbar-laravel bg-green">
             <!-- <div class="container"> -->
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Patient_Health_Tracking') }}
@@ -52,7 +52,7 @@
                                 @endif
                             </li>
                         @else
-                        @php 
+                        @php
                         $type=Session::get('type');
                         @endphp
                         <li class="nav-item">
@@ -77,7 +77,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>    
+                                </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('myProfile') }}">  {{ __('My Profile') }}</a>
                                     <a class="dropdown-item" href="{{ url('changePassword') }}">  {{ __('Change Password') }}</a>
@@ -96,7 +96,7 @@
                 </div>
             <!-- </div> -->
         </nav>
-
+        <p class="d-none d-md-block">&nbsp;</p>
         <main class="py-4">
             @yield('content')
         </main>
